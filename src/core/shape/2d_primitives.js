@@ -374,15 +374,12 @@ p5.prototype._renderEllipse = function(x, y, w, h, detailX) {
  *
  * <div>
  * <code>
- * function setup() {
- *   createCanvas(100, 100, WEBGL);
- *   describe('A black line drawn on a gray canvas.');
- * }
- *
- * function draw() {
- *   background(220);
- *   line(0, 0, 0, 10, 10, 0);
- * }
+ * createCanvas(100, 100, WEBGL);
+ * strokeWeight(7);
+ * line(0, 0, 0, 30, 0, 0);
+ * line(0, 0, 0, 0, 30, 0);
+ * line(-30, -30, -30, 30, 30, 30);
+ * describe('two lines mark the flat x and y axes while a third line spans diagonally through the third dimension');
  * </code>
  * </div>
  *
