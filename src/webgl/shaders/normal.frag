@@ -1,3 +1,5 @@
+// sets the built in variable gl_FragColor
+
 precision mediump float;
 varying vec3 vVertexNormal;
 void main(void) {

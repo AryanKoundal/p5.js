@@ -1,3 +1,5 @@
+// seems like a utility function for lighting
+
 precision highp float;
 precision highp int;
 

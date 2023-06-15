@@ -1,3 +1,6 @@
+// this shader adds texture and lighting to the material
+// its vertex shader is light.vert
+
 precision highp float;
 
 uniform vec4 uTint;
