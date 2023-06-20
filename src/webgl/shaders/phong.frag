@@ -21,6 +21,7 @@ void main(void) {
 
   vec3 diffuse;
   vec3 specular;
+  // call entering from here
   totalLight(vViewPosition, normalize(vNormal), diffuse, specular);
 
   // Calculating final color as result of all lights (plus emissive term).

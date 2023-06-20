@@ -5,6 +5,9 @@ uniform mat4 uViewMatrix;
 
 uniform bool uUseLighting;
 
+uniform bool uUseImageLight;
+uniform sampler2D equiRectangularTextures;
+
 uniform int uAmbientLightCount;
 uniform vec3 uAmbientColor[5];
 
@@ -67,6 +70,41 @@ LightResult _light(vec3 viewDirection, vec3 normal, vec3 lightVector) {
   return lr;
 }
 
+vec2 mapTextureToNormal( vec3 normal ){
+  // x = r sin(phi) cos(theta)
+  // y = r cos(phi)
+  // z = r sin(phi) sin(theta)
+  float phi = acos( normal.y );
+  // if phi is 0, then there are no x, z components
+  float theta = 0.0;
+  // else 
+  if(  abs(sin(phi)) > 0.0 ){
+    theta = acos( normal.x / sin(phi) );
+  }   
+
+    vec2 newTexCoor = vec2(
+      map(theta, 0., PI, 0., 1.),
+      map(phi, 0., PI, 1., 0.)
+  );
+  return newTexCoor;
+}
+
+vec3 calculateImageDiffuse( vec3 vNormal, vec3 vViewPosition, ){
+  // put the code from the sketch frag here
+  vec3 worldCameraPosition =  [0.0, 0.0, 0.0];
+  vec3 worldNormal = normalize(vNormal);
+  vec3 lightDirection = normalize( vViewPosition - worldCameraPosition );
+  vec3 R = reflect(lightDirection, worldNormal);
+  vec2 newTexCoor = mapTextureToNormal( R );
+  
+  
+  vec4 texture = texture2D(equiRectangularTextures, newTexCoor );
+  return texture.xyz;
+}
+
+// vec3 calculateImageSpecular(){}
+
+// totalLight(vViewPosition, normalize(vNormal), diffuse, specular);
 void totalLight(
   vec3 modelPosition,
   vec3 normal,
@@ -137,6 +175,12 @@ void totalLight(
       totalSpecular += result.specular * lightColor * specularColor * lightFalloff;
     }
   }
+
+  if( useImageLight ){
+    totalDiffuse += calculateImageDiffuse(normal, modelPosition);
+    // totalSpecular += calculateImageSpecular();
+  }
+
 
   totalDiffuse *= diffuseFactor;
   totalSpecular *= specularFactor;

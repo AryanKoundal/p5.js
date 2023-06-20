@@ -1608,6 +1608,15 @@ p5.RendererGL = class RendererGL extends p5.Renderer {
     );
   }
 
+  // what would be the shader
+  _setImageLightUniforms( shader){
+    shader.bindShader();
+
+    //set uniform values
+    shader.setUniform('useImageLight', this.something );
+    shader.setUniform('equiRectangularTextures', this.something );
+  }
+
   /* Binds a buffer to the drawing context
    * when passed more than two arguments it also updates or initializes
    * the data associated with the buffer
