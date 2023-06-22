@@ -5,7 +5,7 @@ uniform mat4 uViewMatrix;
 
 uniform bool uUseLighting;
 
-uniform bool uUseImageLight;
+// uniform bool uUseImageLight;
 uniform sampler2D equiRectangularTextures;
 
 uniform int uAmbientLightCount;
