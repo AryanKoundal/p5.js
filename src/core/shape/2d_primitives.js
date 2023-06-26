@@ -372,16 +372,30 @@ p5.prototype._renderEllipse = function(x, y, w, h, detailX) {
  * </code>
  * </div>
  *
+ * <div>
+ * <code>
+ * function setup() {
+ *   createCanvas(100, 100, WEBGL);
+ *   describe('A black line drawn on a gray canvas.');
+ * }
+ *
+ * function draw() {
+ *   background(220);
+ *   line(0, 0, 0, 10, 10, 0);
+ * }
+ * </code>
+ * </div>
+ *
  */
 
 /**
  * @method line
  * @param  {Number} x1
  * @param  {Number} y1
- * @param  {Number} z1 the z-coordinate of the first point
+ * @param  {Number} z1 the z-coordinate of the first point.
  * @param  {Number} x2
  * @param  {Number} y2
- * @param  {Number} z2 the z-coordinate of the second point
+ * @param  {Number} z2 the z-coordinate of the second point.
  * @chainable
  */
 p5.prototype.line = function(...args) {
