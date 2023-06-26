@@ -176,7 +176,7 @@ void totalLight(
     }
   }
 
-  if( useImageLight ){
+  if( equiRectangularTextures !== undefined ){
     totalDiffuse += calculateImageDiffuse(normal, modelPosition);
     // totalSpecular += calculateImageSpecular();
   }
